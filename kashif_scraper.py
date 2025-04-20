@@ -11,7 +11,9 @@ def main(args):
     soup=BeautifulSoup(result.content.decode('utf-8'), "xml")
     items=soup.find_all("item")
     results=[]
+    file = args[3]
     if len(args) == 2: # if no start date specified
+        file = args[2]
         for item in items:
             date = ymd_from_date(item.find("pubDate"))
             add_to_results(results,item,date)
@@ -22,10 +24,10 @@ def main(args):
             
             if is_after(args[1]+" "+args[2], date): # stop when we get to before the start date
                 break
-            print("here")
+            #print("here")
             add_to_results(results,item,date)
     
-    file = args[3]
+    
     to_dump = {"articles":{}}
     
     counter = 0
