@@ -40,7 +40,8 @@ def main(args):
         
         to_dump["articles"][str(counter)] = {"title":str(result[0]), "text":str(result[1]),"author":"","date_published":str(result[2]),"unix_date_published":str(time.mktime(unix_date.timetuple())),"organization_country":"Palestine", "site_name": "Kashif", "url":str(result[3]), "language":result[4]}
     
-        #print(to_dump)
+        #print(to_dump["articles"][str(counter)])
+        counter += 1
     with open(file, "w") as json_file:
         json.dump(to_dump, json_file, indent=4)
 
@@ -74,8 +75,8 @@ def ymd_from_date(date):
     return "-".join([year,str(cur),day]) + " " + ymd[4]
     
 def is_before(d1,d2):
-    print(d1)
-    print(d2)
+    #print(d1)
+    #print(d2)
     d1 = d1.split(" ")
     d2 = d2.split(" ")
     
