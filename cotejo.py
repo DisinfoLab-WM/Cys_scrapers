@@ -11,13 +11,13 @@ def main(args):
     soup=BeautifulSoup(result.content.decode('utf-8'), "xml")
     items=soup.find_all("item")
     results=[]
-    file = args[3]
+    file = args[1]
     if len(args) == 2: # if no start date specified
-        file = args[1]
         for item in items:
             date = ymd_from_date(item.find("pubDate"))
             add_to_results(results,item,date)
     else: # if start date specified
+        file = args[3]
         for item in items:
             #print(item.find("pubDate"))
             date = ymd_from_date(item.find("pubDate"))
@@ -46,15 +46,12 @@ def main(args):
         json.dump(to_dump, json_file, indent=4)
 
 def add_to_results(results, item, date):
-    title = item.find("title")
+    title = item.find("title").string
     link = item.find("link").string
-    body = remove_html(item.find("content"))
+    body = item.find("description")
     author = item.find("dc:creator").string
     
     results.append([title,body,author,date,link])
-    
-def remove_html(snippet):
-    return snippet
 
 def ymd_from_date(date):
     #print(date)
