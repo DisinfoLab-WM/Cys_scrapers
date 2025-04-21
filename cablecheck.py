@@ -31,7 +31,7 @@ for index, entry in enumerate(feed.entries):
         lang = "ha"
     elif {'term': 'News in pidgin', 'scheme': None, 'label': None} in categories:
         lang = "pcm"
-    elif {'term': 'News in Igbo', 'scheme': None, 'label': None} in categories:
+    elif {'term': 'news in Igbo', 'scheme': None, 'label': None} in categories:
         lang = "ig"
     
     articles["articles"][str(index)] = {
